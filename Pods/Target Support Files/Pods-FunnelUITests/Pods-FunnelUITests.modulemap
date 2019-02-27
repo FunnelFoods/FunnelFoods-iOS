@@ -1,6 +1,0 @@
-framework module Pods_FunnelUITests {
-  umbrella header "Pods-FunnelUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -1,6 +1,0 @@
-framework module Pods_Funnel {
-  umbrella header "Pods-Funnel-umbrella.h"
-
-  export *
-  module * { export * }
-}
