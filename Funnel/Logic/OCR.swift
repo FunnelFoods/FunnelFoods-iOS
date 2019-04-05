@@ -14,12 +14,13 @@ class OCR: NSObject, G8TesseractDelegate {
     
     let tesseract = G8Tesseract(language: "eng")!
 
-    func output(image: UIImage){
-        tesseract.engineMode = .tesseractLSTMCombined
+    func output(image: UIImage) -> String {
+        tesseract.engineMode = .lstmOnly
         tesseract.pageSegmentationMode = .auto
         tesseract.image = image.scaleImage(640)!
         tesseract.recognize()
         print("Text: \(tesseract.recognizedText!)")
+        return tesseract.recognizedText
    }
 }
 

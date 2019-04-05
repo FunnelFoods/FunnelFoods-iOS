@@ -94,7 +94,7 @@ typedef NS_ENUM(NSUInteger, G8OCREngineMode){
     /**
      *  Run both and combine results - best accuracy (deprecated)
      */
-    G8OCREngineModeTesseractLSTMCombined,
+    G8OCREngineModeTesseractLSTMCombined __attribute__((deprecated)),
 //    G8OCREngineModeDefault,
 };
 

@@ -9,4 +9,16 @@
 import UIKit
 
 class ReceiptParser: NSObject {
+   
+    // Defaults to not a receipt
+    var isReceipt = false
+    
+    func parse(string: String) -> Array<Any> {
+        if string.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            return []
+        } else {
+            isReceipt = true
+            return []
+        }
+    }
 }

@@ -22,7 +22,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BWr-hb-6JP">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iZZ-X8-chx" customClass="Gradient" customModule="Funnel" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iZZ-X8-chx" customClass="GradientView" customModule="Funnel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="UWv-oz-y7L">
@@ -52,7 +52,7 @@
                                                         <rect key="frame" x="208" y="0.0" width="137" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WT0-Fo-HXe" customClass="SearchButton" customModule="Funnel" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="162" height="50"/>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -122,7 +122,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="FAH-6i-Abo">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="500"/>
                             </activityIndicatorView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Iw-Ou-rR6">
                                 <rect key="frame" x="0.0" y="80" width="375" height="500"/>
@@ -163,8 +163,8 @@
                         <constraints>
                             <constraint firstItem="Lvr-Jc-lZA" firstAttribute="top" secondItem="2Iw-Ou-rR6" secondAttribute="bottom" id="8PO-dH-VBg"/>
                             <constraint firstItem="Lvr-Jc-lZA" firstAttribute="leading" secondItem="Rbw-td-ty7" secondAttribute="leading" id="8bD-lQ-SjI"/>
-                            <constraint firstAttribute="bottom" secondItem="FAH-6i-Abo" secondAttribute="bottom" id="AAh-3P-gN3"/>
-                            <constraint firstItem="FAH-6i-Abo" firstAttribute="leading" secondItem="fsL-yY-ugr" secondAttribute="leading" id="G2O-M3-rEz"/>
+                            <constraint firstItem="2Iw-Ou-rR6" firstAttribute="bottom" secondItem="FAH-6i-Abo" secondAttribute="bottom" id="AAh-3P-gN3"/>
+                            <constraint firstItem="FAH-6i-Abo" firstAttribute="leading" secondItem="2Iw-Ou-rR6" secondAttribute="leading" id="G2O-M3-rEz"/>
                             <constraint firstItem="2Iw-Ou-rR6" firstAttribute="top" secondItem="HZE-cG-zoG" secondAttribute="bottom" constant="8" id="JBy-vC-AFI"/>
                             <constraint firstItem="fsL-yY-ugr" firstAttribute="trailing" secondItem="HZE-cG-zoG" secondAttribute="trailing" constant="16" id="QvG-sN-q5n"/>
                             <constraint firstItem="Lvr-Jc-lZA" firstAttribute="trailing" secondItem="Rbw-td-ty7" secondAttribute="trailing" id="Ujh-HZ-dUP"/>
@@ -173,8 +173,8 @@
                             <constraint firstItem="2Iw-Ou-rR6" firstAttribute="trailing" secondItem="Rbw-td-ty7" secondAttribute="trailing" id="aQH-ei-WC5"/>
                             <constraint firstAttribute="bottom" secondItem="Lvr-Jc-lZA" secondAttribute="bottom" id="fA9-JA-iBW"/>
                             <constraint firstItem="HZE-cG-zoG" firstAttribute="leading" secondItem="fsL-yY-ugr" secondAttribute="leading" constant="298" id="i7c-qw-75l"/>
-                            <constraint firstItem="fsL-yY-ugr" firstAttribute="trailing" secondItem="FAH-6i-Abo" secondAttribute="trailing" id="mFg-ul-OaQ"/>
-                            <constraint firstItem="FAH-6i-Abo" firstAttribute="top" secondItem="Rbw-td-ty7" secondAttribute="top" id="sFg-mZ-PZ4"/>
+                            <constraint firstItem="2Iw-Ou-rR6" firstAttribute="trailing" secondItem="FAH-6i-Abo" secondAttribute="trailing" id="mFg-ul-OaQ"/>
+                            <constraint firstItem="FAH-6i-Abo" firstAttribute="top" secondItem="2Iw-Ou-rR6" secondAttribute="top" id="sFg-mZ-PZ4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fsL-yY-ugr"/>
                     </view>
@@ -468,7 +468,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GY3-hm-rgr">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="26a-qQ-RYf" customClass="Gradient" customModule="Funnel" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="26a-qQ-RYf" customClass="GradientView" customModule="Funnel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spending" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXY-PQ-12p">
@@ -531,7 +531,7 @@
                                 <rect key="frame" x="152" y="348" width="110" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUz-vL-Gw9" customClass="Gradient" customModule="Funnel" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RUz-vL-Gw9" customClass="GradientView" customModule="Funnel" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Composition" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7V-2W-w66">
@@ -582,7 +582,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UvD-Lu-a4T" customClass="Gradient" customModule="Funnel" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UvD-Lu-a4T" customClass="GradientView" customModule="Funnel" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
@@ -632,7 +632,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LZ8-eb-V9w">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="auB-JX-wLU" customClass="Gradient" customModule="Funnel" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="auB-JX-wLU" customClass="GradientView" customModule="Funnel" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="nYV-Bz-BMJ">
@@ -662,7 +662,7 @@
                                                         <rect key="frame" x="265" y="0.0" width="80" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMD-Ri-bcF" customClass="SearchButton" customModule="Funnel" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="105" height="50"/>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

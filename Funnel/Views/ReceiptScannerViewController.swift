@@ -25,23 +25,33 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     @IBAction func takePhoto(_ sender: Any) {
         // Blur camera and start activity indicator
         activityIndicator.startAnimating()
+        
+        //Create blur view and add to view
         if !UIAccessibility.isReduceTransparencyEnabled {
             activityIndicator.backgroundColor = .clear
             let blurEffect = UIBlurEffect(style: .regular)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
             //always fill the view
-            blurEffectView.frame = self.previewView.frame
+            blurEffectView.frame = self.previewView.bounds
             blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             
-            activityIndicator.addSubview(blurEffectView) //if you have more UIViews, use an insertSubview API to place it where needed
+            activityIndicator.addSubview(blurEffectView)
+            
+            let spinner = UIActivityIndicatorView(style: .gray)
+            spinner.startAnimating()
+            spinner.frame = self.previewView.bounds
+            spinner.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            activityIndicator.addSubview(spinner)
+            activityIndicator.bringSubviewToFront(spinner)
         }
         
+        // Set capture settings
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         stillImageOutput.capturePhoto(with: settings, delegate: self)
     }
     
     // Setup camera
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -107,7 +117,7 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         }
     }
     
-    // MARK: Tesseract OCR
+    // MARK: Capture image and process (Tesseract logic in Logic/OCR.swift, receipt parsing Logic/ReceiptParser.swift)
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
@@ -116,12 +126,25 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         
         let image = UIImage(data: imageData)
         
-        // Tesseract setup and OCR
-        OCR().output(image: UIImage(imageLiteralResourceName: "test_receipt"))
+        // Fetch OCR
+        let output = OCR().output(image: image!)
         
-        // Start running the capture session again
+        // Stop the activity indicator because processing is done
         activityIndicator.stopAnimating()
-        self.captureSession.startRunning()
+        
+        
+        // Parse Receipt, create instance of receiptParser
+        let receiptParser = ReceiptParser()
+        let result = receiptParser.parse(string: output)
+        
+        if receiptParser.isReceipt {
+            // Process output
+        } else {
+            // Not a receipt
+            let alert = UIAlertController(title: "No receipt found", message: "Make sure to align the receipt properly with the camera.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+        }
     }
     
     // MARK: Volume button handlers
