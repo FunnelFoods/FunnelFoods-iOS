@@ -121,6 +121,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="FAH-6i-Abo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                            </activityIndicatorView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Iw-Ou-rR6">
                                 <rect key="frame" x="0.0" y="80" width="375" height="500"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -160,6 +163,8 @@
                         <constraints>
                             <constraint firstItem="Lvr-Jc-lZA" firstAttribute="top" secondItem="2Iw-Ou-rR6" secondAttribute="bottom" id="8PO-dH-VBg"/>
                             <constraint firstItem="Lvr-Jc-lZA" firstAttribute="leading" secondItem="Rbw-td-ty7" secondAttribute="leading" id="8bD-lQ-SjI"/>
+                            <constraint firstAttribute="bottom" secondItem="FAH-6i-Abo" secondAttribute="bottom" id="AAh-3P-gN3"/>
+                            <constraint firstItem="FAH-6i-Abo" firstAttribute="leading" secondItem="fsL-yY-ugr" secondAttribute="leading" id="G2O-M3-rEz"/>
                             <constraint firstItem="2Iw-Ou-rR6" firstAttribute="top" secondItem="HZE-cG-zoG" secondAttribute="bottom" constant="8" id="JBy-vC-AFI"/>
                             <constraint firstItem="fsL-yY-ugr" firstAttribute="trailing" secondItem="HZE-cG-zoG" secondAttribute="trailing" constant="16" id="QvG-sN-q5n"/>
                             <constraint firstItem="Lvr-Jc-lZA" firstAttribute="trailing" secondItem="Rbw-td-ty7" secondAttribute="trailing" id="Ujh-HZ-dUP"/>
@@ -168,10 +173,13 @@
                             <constraint firstItem="2Iw-Ou-rR6" firstAttribute="trailing" secondItem="Rbw-td-ty7" secondAttribute="trailing" id="aQH-ei-WC5"/>
                             <constraint firstAttribute="bottom" secondItem="Lvr-Jc-lZA" secondAttribute="bottom" id="fA9-JA-iBW"/>
                             <constraint firstItem="HZE-cG-zoG" firstAttribute="leading" secondItem="fsL-yY-ugr" secondAttribute="leading" constant="298" id="i7c-qw-75l"/>
+                            <constraint firstItem="fsL-yY-ugr" firstAttribute="trailing" secondItem="FAH-6i-Abo" secondAttribute="trailing" id="mFg-ul-OaQ"/>
+                            <constraint firstItem="FAH-6i-Abo" firstAttribute="top" secondItem="Rbw-td-ty7" secondAttribute="top" id="sFg-mZ-PZ4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fsL-yY-ugr"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="FAH-6i-Abo" id="v5t-V3-8PS"/>
                         <outlet property="previewView" destination="2Iw-Ou-rR6" id="yk5-Ks-eKc"/>
                     </connections>
                 </viewController>

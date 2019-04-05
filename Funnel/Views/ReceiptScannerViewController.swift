@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import TesseractOCR
+import MediaPlayer
 
 class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDelegate, G8TesseractDelegate {
     
@@ -17,14 +18,21 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     
     @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBAction func takePhoto(_ sender: Any) {
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         stillImageOutput.capturePhoto(with: settings, delegate: self)
     }
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Rotate and lock
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+        
         captureSession = AVCaptureSession()
         captureSession.sessionPreset = .medium
         guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
@@ -43,7 +51,9 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         catch let error  {
             print("Error Unable to initialize back camera:  \(error.localizedDescription)")
         }
-        // Do any additional setup after loading the view.
+        
+        // Setup volume buttons
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,8 +62,11 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        //Stop camera from running
         super.viewWillDisappear(animated)
         self.captureSession.stopRunning()
+        // Reset orientation
+        AppUtility.lockOrientation(.all)
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,6 +85,7 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
             self.captureSession.startRunning()
             DispatchQueue.main.async {
                 self.videoPreviewLayer.frame = self.previewView.bounds
+                self.view.bringSubviewToFront(self.activityIndicator)
             }
         }
     }
@@ -88,8 +102,10 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
             tesseract.engineMode = .tesseractCubeCombined
             tesseract.pageSegmentationMode = .auto
             tesseract.image = image!.scaleImage(640)!
+            activityIndicator.startAnimating()
             tesseract.recognize()
             print("Text: \(tesseract.recognizedText!)")
+            activityIndicator.stopAnimating()
         }
     }
     
@@ -97,6 +113,22 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         return false // return true if you need to interrupt tesseract before it finishes
     }
     
+    // Volume button take photos
+    func listenVolumeButton() {
+        let audioSession = AVAudioSession.sharedInstance()
+        do {
+            try audioSession.setActive(true)
+        } catch {
+            print("some error")
+        }
+        audioSession.addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "outputVolume" {
+            print("got in here")
+        }
+    }
 
     /*
     // MARK: - Navigation
