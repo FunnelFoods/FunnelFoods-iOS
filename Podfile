@@ -6,7 +6,7 @@ inhibit_all_warnings!
 target 'Funnel' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
-  pod 'TesseractOCRiOS'
+  pod 'TesseractOCRiOS', :git => 'https://github.com/parallaxe/Tesseract-OCR-iOS.git', :branch => "macos-support"
   pod 'AWSCore'
   pod 'AWSAppSync'
 

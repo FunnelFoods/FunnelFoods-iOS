@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Funnel
+@testable import Pods_Funnel
 
 class FunnelTests: XCTestCase {
 

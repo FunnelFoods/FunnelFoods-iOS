@@ -8,10 +8,9 @@
 
 import UIKit
 import AVFoundation
-import TesseractOCR
 import MediaPlayer
 
-class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDelegate, G8TesseractDelegate {
+class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
     let stillImageOutput = AVCapturePhotoOutput()
     var captureSession: AVCaptureSession!
@@ -20,12 +19,28 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    // MARK: Camera setup
+    // Camera button click
+    
     @IBAction func takePhoto(_ sender: Any) {
+        // Blur camera and start activity indicator
+        activityIndicator.startAnimating()
+        if !UIAccessibility.isReduceTransparencyEnabled {
+            activityIndicator.backgroundColor = .clear
+            let blurEffect = UIBlurEffect(style: .regular)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            //always fill the view
+            blurEffectView.frame = self.previewView.frame
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            activityIndicator.addSubview(blurEffectView) //if you have more UIViews, use an insertSubview API to place it where needed
+        }
+        
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
         stillImageOutput.capturePhoto(with: settings, delegate: self)
     }
     
-    
+    // Setup camera
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +73,7 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        // This is to make it so that the camera view doesn't have the animation
         previewView.isHidden = false
     }
     
@@ -65,6 +81,7 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         //Stop camera from running
         super.viewWillDisappear(animated)
         self.captureSession.stopRunning()
+        
         // Reset orientation
         AppUtility.lockOrientation(.all)
     }
@@ -90,6 +107,8 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         }
     }
     
+    // MARK: Tesseract OCR
+    
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         
         guard let imageData = photo.fileDataRepresentation()
@@ -98,22 +117,14 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         let image = UIImage(data: imageData)
         
         // Tesseract setup and OCR
-        if let tesseract = G8Tesseract(language: "eng") {
-            tesseract.engineMode = .tesseractCubeCombined
-            tesseract.pageSegmentationMode = .auto
-            tesseract.image = image!.scaleImage(640)!
-            activityIndicator.startAnimating()
-            tesseract.recognize()
-            print("Text: \(tesseract.recognizedText!)")
-            activityIndicator.stopAnimating()
-        }
+        OCR().output(image: UIImage(imageLiteralResourceName: "test_receipt"))
+        
+        // Start running the capture session again
+        activityIndicator.stopAnimating()
+        self.captureSession.startRunning()
     }
     
-    func shouldCancelImageRecognitionForTesseract(tesseract: G8Tesseract!) -> Bool {
-        return false // return true if you need to interrupt tesseract before it finishes
-    }
-    
-    // Volume button take photos
+    // MARK: Volume button handlers
     func listenVolumeButton() {
         let audioSession = AVAudioSession.sharedInstance()
         do {
@@ -140,27 +151,4 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     }
     */
 
-}
-
-// MARK: - UIImage extension
-extension UIImage {
-    func scaleImage(_ maxDimension: CGFloat) -> UIImage? {
-        
-        var scaledSize = CGSize(width: maxDimension, height: maxDimension)
-        
-        if size.width > size.height {
-            let scaleFactor = size.height / size.width
-            scaledSize.height = scaledSize.width * scaleFactor
-        } else {
-            let scaleFactor = size.width / size.height
-            scaledSize.width = scaledSize.height * scaleFactor
-        }
-        
-        UIGraphicsBeginImageContext(scaledSize)
-        draw(in: CGRect(origin: .zero, size: scaledSize))
-        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return scaledImage
-    }
 }

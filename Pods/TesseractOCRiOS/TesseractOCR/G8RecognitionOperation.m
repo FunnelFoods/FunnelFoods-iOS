@@ -22,28 +22,15 @@
 
 - (id) initWithLanguage:(NSString *)language
 {
-    return [self initWithLanguage:language configDictionary:nil configFileNames:nil absoluteDataPath:nil engineMode:G8OCREngineModeTesseractOnly];
-}
-
-- (id)initWithLanguage:(NSString *)language
-      configDictionary:(NSDictionary *)configDictionary
-       configFileNames:(NSArray *)configFileNames
-      absoluteDataPath:(NSString *)absoluteDataPath
-            engineMode:(G8OCREngineMode)engineMode
-{
     self = [super init];
     if (self != nil) {
-        _tesseract = [[G8Tesseract alloc] initWithLanguage:language
-                                          configDictionary:configDictionary
-                                           configFileNames:configFileNames
-                                          absoluteDataPath:absoluteDataPath
-                                                engineMode:engineMode];
+        _tesseract = [[G8Tesseract alloc] initWithLanguage:language];
         _tesseract.delegate = self;
-        
+
         __weak __typeof(self) weakSelf = self;
         self.completionBlock = ^{
             __strong __typeof(weakSelf) strongSelf = weakSelf;
-            
+
             G8RecognitionOperationCallback callback = [strongSelf.recognitionCompleteBlock copy];
             G8Tesseract *tesseract = strongSelf.tesseract;
             if (callback != nil) {
@@ -88,6 +75,7 @@
     return canceled;
 }
 
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 - (UIImage *)preprocessedImageForTesseract:(G8Tesseract *)tesseract sourceImage:(UIImage *)sourceImage
 {
     if ([self.delegate respondsToSelector:@selector(preprocessedImageForTesseract:sourceImage:)]) {
@@ -95,5 +83,14 @@
     }
     return nil;
 }
+#elif TARGET_OS_MAC
+- (NSImage *)preprocessedImageForTesseract:(G8Tesseract *)tesseract sourceImage:(NSImage *)sourceImage
+{
+    if ([self.delegate respondsToSelector:@selector(preprocessedImageForTesseract:sourceImage:)]) {
+        return [self.delegate preprocessedImageForTesseract:tesseract sourceImage:sourceImage];
+    }
+    return nil;
+}
+#endif
 
 @end
