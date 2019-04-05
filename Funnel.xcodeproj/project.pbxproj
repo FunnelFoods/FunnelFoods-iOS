@@ -17,6 +17,8 @@
 		1052DD4721D647B500D0C8C0 /* ListPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1052DD4621D647B500D0C8C0 /* ListPageViewController.swift */; };
 		10644A9422570C6D00291D63 /* ReceiptScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10644A9322570C6D00291D63 /* ReceiptScannerViewController.swift */; };
 		10673E3121D7C56B0064FD13 /* PageViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10673E3021D7C56B0064FD13 /* PageViewControllers.swift */; };
+		10C6B31F22574B8F00348E37 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10993FCF22572BCB00B6D079 /* CoreImage.framework */; };
+		10C6B3232257523600348E37 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 10C6B3222257523600348E37 /* tessdata */; };
 		10CEEB7422573F0C00C1820B /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1035860F225730A4009431BC /* libc++.tbd */; };
 		10F28FB821D1E6C40018BB9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F28FB721D1E6C40018BB9E /* AppDelegate.swift */; };
 		10F28FBD21D1E6C40018BB9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F28FBB21D1E6C40018BB9E /* Main.storyboard */; };
@@ -24,7 +26,6 @@
 		10F28FC221D1E6C40018BB9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F28FC021D1E6C40018BB9E /* LaunchScreen.storyboard */; };
 		10F28FCD21D1E6C50018BB9E /* FunnelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F28FCC21D1E6C50018BB9E /* FunnelTests.swift */; };
 		10F28FD821D1E6C50018BB9E /* FunnelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F28FD721D1E6C50018BB9E /* FunnelUITests.swift */; };
-		10F540062257440900AD1F6D /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 10F540052257440900AD1F6D /* tessdata */; };
 		10F54008225744AE00AD1F6D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F54007225744AE00AD1F6D /* libz.tbd */; };
 		10F5A46221D479F700D127C2 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F5A46121D479F700D127C2 /* Gradient.swift */; };
 		4531AF82729D32BA5A1BE1DC /* Pods_Funnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 999775F8A12C4D5D3E779E4C /* Pods_Funnel.framework */; };
@@ -65,6 +66,7 @@
 		10993FC82257284C00B6D079 /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10993FCD22572BC400B6D079 /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10993FCF22572BCB00B6D079 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		10C6B3222257523600348E37 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		10CEEB70225738B100C1820B /* SwiftyTesseract.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyTesseract.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10F28FB421D1E6C40018BB9E /* Funnel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Funnel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10F28FB721D1E6C40018BB9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +80,6 @@
 		10F28FD321D1E6C50018BB9E /* FunnelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunnelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10F28FD721D1E6C50018BB9E /* FunnelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunnelUITests.swift; sourceTree = "<group>"; };
 		10F28FD921D1E6C50018BB9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		10F540052257440900AD1F6D /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		10F54007225744AE00AD1F6D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		10F5A46121D479F700D127C2 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		25C04E06725C28AC970855CE /* Pods_FunnelUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunnelUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10C6B31F22574B8F00348E37 /* CoreImage.framework in Frameworks */,
 				10F54008225744AE00AD1F6D /* libz.tbd in Frameworks */,
 				10CEEB7422573F0C00C1820B /* libc++.tbd in Frameworks */,
 				4531AF82729D32BA5A1BE1DC /* Pods_Funnel.framework in Frameworks */,
@@ -171,7 +173,7 @@
 		10F28FB621D1E6C40018BB9E /* Funnel */ = {
 			isa = PBXGroup;
 			children = (
-				10F540052257440900AD1F6D /* tessdata */,
+				10C6B3222257523600348E37 /* tessdata */,
 				10C9FB1721D47C9A00B644E3 /* Views */,
 				10F5A45E21D479D600D127C2 /* Elements */,
 				10F28FB721D1E6C40018BB9E /* AppDelegate.swift */,
@@ -352,7 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10F28FC221D1E6C40018BB9E /* LaunchScreen.storyboard in Resources */,
-				10F540062257440900AD1F6D /* tessdata in Resources */,
+				10C6B3232257523600348E37 /* tessdata in Resources */,
 				10F28FBF21D1E6C40018BB9E /* Assets.xcassets in Resources */,
 				10F28FBD21D1E6C40018BB9E /* Main.storyboard in Resources */,
 			);

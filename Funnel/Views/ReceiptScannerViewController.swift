@@ -10,14 +10,13 @@ import UIKit
 import AVFoundation
 import TesseractOCR
 
-class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDelegate {
+class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDelegate, G8TesseractDelegate {
     
     let stillImageOutput = AVCapturePhotoOutput()
     var captureSession: AVCaptureSession!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
     
     @IBOutlet weak var previewView: UIView!
-    @IBOutlet weak var captureImageView: UIImageView!
     
     @IBAction func takePhoto(_ sender: Any) {
         let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
@@ -57,6 +56,10 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         self.captureSession.stopRunning()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     func setupLivePreview() {
         
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
@@ -79,7 +82,19 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
             else { return }
         
         let image = UIImage(data: imageData)
-        captureImageView.image = image
+        
+        // Tesseract setup and OCR
+        if let tesseract = G8Tesseract(language: "eng") {
+            tesseract.engineMode = .tesseractCubeCombined
+            tesseract.pageSegmentationMode = .auto
+            tesseract.image = image!.scaleImage(640)!
+            tesseract.recognize()
+            print("Text: \(tesseract.recognizedText!)")
+        }
+    }
+    
+    func shouldCancelImageRecognitionForTesseract(tesseract: G8Tesseract!) -> Bool {
+        return false // return true if you need to interrupt tesseract before it finishes
     }
     
 
@@ -93,4 +108,27 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     }
     */
 
+}
+
+// MARK: - UIImage extension
+extension UIImage {
+    func scaleImage(_ maxDimension: CGFloat) -> UIImage? {
+        
+        var scaledSize = CGSize(width: maxDimension, height: maxDimension)
+        
+        if size.width > size.height {
+            let scaleFactor = size.height / size.width
+            scaledSize.height = scaledSize.width * scaleFactor
+        } else {
+            let scaleFactor = size.width / size.height
+            scaledSize.width = scaledSize.height * scaleFactor
+        }
+        
+        UIGraphicsBeginImageContext(scaledSize)
+        draw(in: CGRect(origin: .zero, size: scaledSize))
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return scaledImage
+    }
 }
