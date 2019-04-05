@@ -1,0 +1,14 @@
+{
+    "ios": {
+        "awscloudformation": {
+            "AuthRoleName": "funnel-ios-20190404205519-authRole",
+            "UnauthRoleArn": "arn:aws:iam::854658757476:role/funnel-ios-20190404205519-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::854658757476:role/funnel-ios-20190404205519-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "funnel-ios-20190404205519-deployment",
+            "UnauthRoleName": "funnel-ios-20190404205519-unauthRole",
+            "StackName": "funnel-ios-20190404205519",
+            "StackId": "arn:aws:cloudformation:us-west-2:854658757476:stack/funnel-ios-20190404205519/a19bff70-5756-11e9-a936-0a0b4fb2a0e4"
+        }
+    }
+}

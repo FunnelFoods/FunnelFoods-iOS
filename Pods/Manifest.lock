@@ -1,0 +1,35 @@
+PODS:
+  - AWSAppSync (2.10.3):
+    - AWSCore (~> 2.9.0)
+    - ReachabilitySwift (~> 4.3.0)
+    - SQLite.swift (= 0.11.5)
+  - AWSCore (2.9.4)
+  - ReachabilitySwift (4.3.1)
+  - SQLite.swift (0.11.5):
+    - SQLite.swift/standard (= 0.11.5)
+  - SQLite.swift/standard (0.11.5)
+  - TesseractOCRiOS (5.0.1)
+
+DEPENDENCIES:
+  - AWSAppSync
+  - AWSCore
+  - TesseractOCRiOS
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - AWSAppSync
+    - AWSCore
+    - ReachabilitySwift
+    - SQLite.swift
+    - TesseractOCRiOS
+
+SPEC CHECKSUMS:
+  AWSAppSync: cc5e6716f712cf9a9bdc176e471027516ac5087d
+  AWSCore: 8539eaa1d687d50b6b127db5cb600e4c6b37cd4e
+  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
+  TesseractOCRiOS: 2c189465f86abb030d0c5141c90da9705b647854
+
+PODFILE CHECKSUM: 8824accb234a0c6c4559e6c4b25a41164b0c12fd
+
+COCOAPODS: 1.5.3

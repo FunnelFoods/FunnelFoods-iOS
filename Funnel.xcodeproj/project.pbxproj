@@ -15,14 +15,21 @@
 		1052DD4321D482CF00D0C8C0 /* CompositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1052DD4221D482CF00D0C8C0 /* CompositionViewController.swift */; };
 		1052DD4521D482E000D0C8C0 /* NutritionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1052DD4421D482E000D0C8C0 /* NutritionViewController.swift */; };
 		1052DD4721D647B500D0C8C0 /* ListPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1052DD4621D647B500D0C8C0 /* ListPageViewController.swift */; };
+		10644A9422570C6D00291D63 /* ReceiptScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10644A9322570C6D00291D63 /* ReceiptScannerViewController.swift */; };
 		10673E3121D7C56B0064FD13 /* PageViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10673E3021D7C56B0064FD13 /* PageViewControllers.swift */; };
+		10CEEB7422573F0C00C1820B /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1035860F225730A4009431BC /* libc++.tbd */; };
 		10F28FB821D1E6C40018BB9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F28FB721D1E6C40018BB9E /* AppDelegate.swift */; };
 		10F28FBD21D1E6C40018BB9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F28FBB21D1E6C40018BB9E /* Main.storyboard */; };
 		10F28FBF21D1E6C40018BB9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 10F28FBE21D1E6C40018BB9E /* Assets.xcassets */; };
 		10F28FC221D1E6C40018BB9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10F28FC021D1E6C40018BB9E /* LaunchScreen.storyboard */; };
 		10F28FCD21D1E6C50018BB9E /* FunnelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F28FCC21D1E6C50018BB9E /* FunnelTests.swift */; };
 		10F28FD821D1E6C50018BB9E /* FunnelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F28FD721D1E6C50018BB9E /* FunnelUITests.swift */; };
+		10F540062257440900AD1F6D /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 10F540052257440900AD1F6D /* tessdata */; };
+		10F54008225744AE00AD1F6D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F54007225744AE00AD1F6D /* libz.tbd */; };
 		10F5A46221D479F700D127C2 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F5A46121D479F700D127C2 /* Gradient.swift */; };
+		4531AF82729D32BA5A1BE1DC /* Pods_Funnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 999775F8A12C4D5D3E779E4C /* Pods_Funnel.framework */; };
+		E337946A8FFDE4245114E99E /* Pods_FunnelUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25C04E06725C28AC970855CE /* Pods_FunnelUITests.framework */; };
+		FFBB15576266BA74834F1377 /* Pods_FunnelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 294C21F792BF7586DCA7AA4E /* Pods_FunnelTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,10 +55,17 @@
 		1026D63D21DE1AEF008C5BAC /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
 		1026F5EB21D7B7330067772E /* SpendingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpendingViewController.swift; sourceTree = "<group>"; };
 		1026F5EF21D7BB4F0067772E /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		1035860F225730A4009431BC /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		10358611225733F7009431BC /* SwiftyTesseract.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyTesseract.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1052DD4221D482CF00D0C8C0 /* CompositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionViewController.swift; sourceTree = "<group>"; };
 		1052DD4421D482E000D0C8C0 /* NutritionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionViewController.swift; sourceTree = "<group>"; };
 		1052DD4621D647B500D0C8C0 /* ListPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPageViewController.swift; sourceTree = "<group>"; };
+		10644A9322570C6D00291D63 /* ReceiptScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiptScannerViewController.swift; sourceTree = "<group>"; };
 		10673E3021D7C56B0064FD13 /* PageViewControllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewControllers.swift; sourceTree = "<group>"; };
+		10993FC82257284C00B6D079 /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10993FCD22572BC400B6D079 /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10993FCF22572BCB00B6D079 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		10CEEB70225738B100C1820B /* SwiftyTesseract.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyTesseract.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10F28FB421D1E6C40018BB9E /* Funnel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Funnel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10F28FB721D1E6C40018BB9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		10F28FBC21D1E6C40018BB9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -64,7 +78,18 @@
 		10F28FD321D1E6C50018BB9E /* FunnelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FunnelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10F28FD721D1E6C50018BB9E /* FunnelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunnelUITests.swift; sourceTree = "<group>"; };
 		10F28FD921D1E6C50018BB9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10F540052257440900AD1F6D /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
+		10F54007225744AE00AD1F6D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		10F5A46121D479F700D127C2 /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
+		25C04E06725C28AC970855CE /* Pods_FunnelUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunnelUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		294C21F792BF7586DCA7AA4E /* Pods_FunnelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunnelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		421B9938517DCEE5F1705FD8 /* Pods-Funnel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Funnel.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Funnel/Pods-Funnel.debug.xcconfig"; sourceTree = "<group>"; };
+		43D0869B257B478498CAA04D /* Pods-FunnelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunnelTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FunnelTests/Pods-FunnelTests.release.xcconfig"; sourceTree = "<group>"; };
+		4763EC47DA84269DCE19EDDA /* Pods-FunnelUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunnelUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FunnelUITests/Pods-FunnelUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4A1C7DC5E9AB1716AED5126D /* Pods-FunnelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunnelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FunnelTests/Pods-FunnelTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8B5B54DD444FCBA8FDE0997C /* Pods-Funnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Funnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Funnel/Pods-Funnel.release.xcconfig"; sourceTree = "<group>"; };
+		9139F334D44595DC490322E6 /* Pods-FunnelUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunnelUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FunnelUITests/Pods-FunnelUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		999775F8A12C4D5D3E779E4C /* Pods_Funnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Funnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +97,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10F54008225744AE00AD1F6D /* libz.tbd in Frameworks */,
+				10CEEB7422573F0C00C1820B /* libc++.tbd in Frameworks */,
+				4531AF82729D32BA5A1BE1DC /* Pods_Funnel.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFBB15576266BA74834F1377 /* Pods_FunnelTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E337946A8FFDE4245114E99E /* Pods_FunnelUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,6 +137,7 @@
 		10C9FB1721D47C9A00B644E3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				10644A9322570C6D00291D63 /* ReceiptScannerViewController.swift */,
 				1026F5EF21D7BB4F0067772E /* ListViewController.swift */,
 				1026D63B21DE1AE0008C5BAC /* CookViewController.swift */,
 				1026D63D21DE1AEF008C5BAC /* ShopViewController.swift */,
@@ -122,6 +153,8 @@
 				10F28FCB21D1E6C50018BB9E /* FunnelTests */,
 				10F28FD621D1E6C50018BB9E /* FunnelUITests */,
 				10F28FB521D1E6C40018BB9E /* Products */,
+				F444E4A22D46310DDFDD9E56 /* Frameworks */,
+				6CB4AFB6C8C6A11AA6E24204 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,6 +171,7 @@
 		10F28FB621D1E6C40018BB9E /* Funnel */ = {
 			isa = PBXGroup;
 			children = (
+				10F540052257440900AD1F6D /* tessdata */,
 				10C9FB1721D47C9A00B644E3 /* Views */,
 				10F5A45E21D479D600D127C2 /* Elements */,
 				10F28FB721D1E6C40018BB9E /* AppDelegate.swift */,
@@ -176,6 +210,36 @@
 			path = Elements;
 			sourceTree = "<group>";
 		};
+		6CB4AFB6C8C6A11AA6E24204 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				421B9938517DCEE5F1705FD8 /* Pods-Funnel.debug.xcconfig */,
+				8B5B54DD444FCBA8FDE0997C /* Pods-Funnel.release.xcconfig */,
+				4A1C7DC5E9AB1716AED5126D /* Pods-FunnelTests.debug.xcconfig */,
+				43D0869B257B478498CAA04D /* Pods-FunnelTests.release.xcconfig */,
+				9139F334D44595DC490322E6 /* Pods-FunnelUITests.debug.xcconfig */,
+				4763EC47DA84269DCE19EDDA /* Pods-FunnelUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F444E4A22D46310DDFDD9E56 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10F54007225744AE00AD1F6D /* libz.tbd */,
+				10CEEB70225738B100C1820B /* SwiftyTesseract.framework */,
+				10358611225733F7009431BC /* SwiftyTesseract.framework */,
+				1035860F225730A4009431BC /* libc++.tbd */,
+				10993FCF22572BCB00B6D079 /* CoreImage.framework */,
+				10993FCD22572BC400B6D079 /* TesseractOCR.framework */,
+				10993FC82257284C00B6D079 /* TesseractOCR.framework */,
+				999775F8A12C4D5D3E779E4C /* Pods_Funnel.framework */,
+				294C21F792BF7586DCA7AA4E /* Pods_FunnelTests.framework */,
+				25C04E06725C28AC970855CE /* Pods_FunnelUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -183,9 +247,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 10F28FDC21D1E6C50018BB9E /* Build configuration list for PBXNativeTarget "Funnel" */;
 			buildPhases = (
+				C94419678DCC63C1861436CC /* [CP] Check Pods Manifest.lock */,
 				10F28FB021D1E6C40018BB9E /* Sources */,
 				10F28FB121D1E6C40018BB9E /* Frameworks */,
 				10F28FB221D1E6C40018BB9E /* Resources */,
+				1297536C33D796AF39DA0110 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -200,7 +266,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 10F28FDF21D1E6C50018BB9E /* Build configuration list for PBXNativeTarget "FunnelTests" */;
 			buildPhases = (
-				ACC7EA3ED36FF86F13D44B84 /* [CP] Check Pods Manifest.lock */,
+				78A0D30B6F4FD7F9B3571B69 /* [CP] Check Pods Manifest.lock */,
 				10F28FC421D1E6C40018BB9E /* Sources */,
 				10F28FC521D1E6C40018BB9E /* Frameworks */,
 				10F28FC621D1E6C40018BB9E /* Resources */,
@@ -219,7 +285,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 10F28FE221D1E6C50018BB9E /* Build configuration list for PBXNativeTarget "FunnelUITests" */;
 			buildPhases = (
-				42C3E33C828688820F62D252 /* [CP] Check Pods Manifest.lock */,
+				2B2F0FDD010F293A36E41448 /* [CP] Check Pods Manifest.lock */,
 				10F28FCF21D1E6C50018BB9E /* Sources */,
 				10F28FD021D1E6C50018BB9E /* Frameworks */,
 				10F28FD121D1E6C50018BB9E /* Resources */,
@@ -246,13 +312,16 @@
 				TargetAttributes = {
 					10F28FB321D1E6C40018BB9E = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 					};
 					10F28FC721D1E6C40018BB9E = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 10F28FB321D1E6C40018BB9E;
 					};
 					10F28FD221D1E6C50018BB9E = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 10F28FB321D1E6C40018BB9E;
 					};
 				};
@@ -283,6 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				10F28FC221D1E6C40018BB9E /* LaunchScreen.storyboard in Resources */,
+				10F540062257440900AD1F6D /* tessdata in Resources */,
 				10F28FBF21D1E6C40018BB9E /* Assets.xcassets in Resources */,
 				10F28FBD21D1E6C40018BB9E /* Main.storyboard in Resources */,
 			);
@@ -305,7 +375,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		42C3E33C828688820F62D252 /* [CP] Check Pods Manifest.lock */ = {
+		1297536C33D796AF39DA0110 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Funnel/Pods-Funnel-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AWSAppSync/AWSAppSync.framework",
+				"${BUILT_PRODUCTS_DIR}/AWSCore/AWSCore.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSAppSync.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Funnel/Pods-Funnel-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2B2F0FDD010F293A36E41448 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -327,7 +427,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		ACC7EA3ED36FF86F13D44B84 /* [CP] Check Pods Manifest.lock */ = {
+		78A0D30B6F4FD7F9B3571B69 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -349,6 +449,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C94419678DCC63C1861436CC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Funnel-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -358,6 +480,7 @@
 			files = (
 				1026F5EC21D7B7330067772E /* SpendingViewController.swift in Sources */,
 				10673E3121D7C56B0064FD13 /* PageViewControllers.swift in Sources */,
+				10644A9422570C6D00291D63 /* ReceiptScannerViewController.swift in Sources */,
 				1026D63E21DE1AEF008C5BAC /* ShopViewController.swift in Sources */,
 				1052DD4521D482E000D0C8C0 /* NutritionViewController.swift in Sources */,
 				10F28FB821D1E6C40018BB9E /* AppDelegate.swift in Sources */,
@@ -539,44 +662,54 @@
 		};
 		10F28FDD21D1E6C50018BB9E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 421B9938517DCEE5F1705FD8 /* Pods-Funnel.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 59Q72N4CQT;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Funnel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.funnel.funnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		10F28FDE21D1E6C50018BB9E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B5B54DD444FCBA8FDE0997C /* Pods-Funnel.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 59Q72N4CQT;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Funnel/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.funnel.funnel;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 		10F28FE021D1E6C50018BB9E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A1C7DC5E9AB1716AED5126D /* Pods-FunnelTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 59Q72N4CQT;
 				INFOPLIST_FILE = FunnelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -585,7 +718,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Funnel.FunnelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Funnel.app/Funnel";
 			};
@@ -593,10 +726,12 @@
 		};
 		10F28FE121D1E6C50018BB9E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 43D0869B257B478498CAA04D /* Pods-FunnelTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 59Q72N4CQT;
 				INFOPLIST_FILE = FunnelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -605,7 +740,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Funnel.FunnelTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Funnel.app/Funnel";
 			};
@@ -613,9 +748,11 @@
 		};
 		10F28FE321D1E6C50018BB9E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9139F334D44595DC490322E6 /* Pods-FunnelUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 59Q72N4CQT;
 				INFOPLIST_FILE = FunnelUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -624,7 +761,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Funnel.FunnelUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Funnel;
 			};
@@ -632,9 +769,11 @@
 		};
 		10F28FE421D1E6C50018BB9E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4763EC47DA84269DCE19EDDA /* Pods-FunnelUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 59Q72N4CQT;
 				INFOPLIST_FILE = FunnelUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -643,7 +782,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = Funnel.FunnelUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Funnel;
 			};
