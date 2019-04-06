@@ -34,40 +34,41 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     
     // Camera button click
     @IBAction func takePhoto(_ sender: Any) {
-        // Blur camera and start activity indicator
-        activityIndicator.startAnimating()
-        
-        //Create blur view and add to view
-        if !UIAccessibility.isReduceTransparencyEnabled {
-            activityIndicator.backgroundColor = .clear
-            let blurEffect = UIBlurEffect(style: .dark)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            //always fill the view
-            blurEffectView.frame = self.view.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        // Check if photo in progress
+        if !activityIndicator.isAnimating {
             
-            activityIndicator.addSubview(blurEffectView)
+            // Blur camera and start activity indicator
+            activityIndicator.startAnimating()
             
-            let spinner = UIActivityIndicatorView(style: .whiteLarge)
-            spinner.startAnimating()
-            spinner.frame = self.previewView.bounds
-            spinner.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            //Create blur view and add to view
+            if !UIAccessibility.isReduceTransparencyEnabled {
+                activityIndicator.backgroundColor = .clear
+                let blurEffect = UIBlurEffect(style: .dark)
+                let blurEffectView = UIVisualEffectView(effect: blurEffect)
+                //always fill the view
+                blurEffectView.frame = self.view.bounds
+                blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                
+                activityIndicator.addSubview(blurEffectView)
+                
+                let spinner = UIActivityIndicatorView(style: .whiteLarge)
+                spinner.startAnimating()
+                spinner.frame = self.previewView.bounds
+                spinner.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                
+                activityIndicator.addSubview(spinner)
+                activityIndicator.bringSubviewToFront(spinner)
+            }
             
-            activityIndicator.addSubview(spinner)
-            activityIndicator.bringSubviewToFront(spinner)
+            // Set capture settings
+            let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
+            stillImageOutput.capturePhoto(with: settings, delegate: self)
         }
-        
-        // Set capture settings
-        let settings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
-        stillImageOutput.capturePhoto(with: settings, delegate: self)
     }
     
     // Setup camera
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Hide camera as it's loading
-        self.view.bringSubviewToFront(cameraCover)
         
         // Rotate and lock
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
@@ -95,6 +96,10 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Hide camera as it's loading
+        self.view.bringSubviewToFront(cameraCover)
+        cameraCover.isHidden = false
+        
         AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
         do { try AVAudioSession.sharedInstance().setActive(true) }
         catch { debugPrint("\(error)") }
@@ -120,30 +125,20 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // This is to make it so that the camera view doesn't have the animation
-        cameraCover.isHidden = true
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
-        //Stop camera from running
         super.viewWillDisappear(animated)
-        self.captureSession.stopRunning()
-        
-        // Reset orientation
-        AppUtility.lockOrientation(.all)
+        cameraCover.isHidden = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        cameraCover.isHidden = false
         AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
         do { try AVAudioSession.sharedInstance().setActive(false) }
         catch { debugPrint("\(error)") }
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        
+        // Reset orientation
+        AppUtility.lockOrientation(.all)
     }
     
     func setupLivePreview() {
@@ -159,6 +154,9 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
             DispatchQueue.main.async {
                 self.videoPreviewLayer.frame = self.previewView.bounds
                 self.view.bringSubviewToFront(self.activityIndicator)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
+                    self.cameraCover.isHidden = true
+                }
             }
         }
     }
@@ -180,16 +178,19 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         let result = receiptParser.parse(string: output)
         
         if receiptParser.isReceipt {
+            // Stop the activity indicator because processing is done
+            activityIndicator.stopAnimating()
+            
             // Process output
         } else {
             // Not a receipt
-//            let alert = UIAlertController(title: "No receipt found", message: "Make sure to align the receipt properly with the camera.", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-//            self.present(alert, animated: true)
+            let alert = UIAlertController(title: "No receipt found", message: "Make sure to align the receipt properly with the camera.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {action in self.activityIndicator.stopAnimating()}))
+            self.present(alert, animated: true)
         }
         
-        // Stop the activity indicator because processing is done
-        activityIndicator.stopAnimating()
+        
+        
     }
     
     // MARK: Flash handler
