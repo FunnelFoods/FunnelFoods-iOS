@@ -95,7 +95,6 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         // Hide camera as it's loading
         self.view.bringSubviewToFront(cameraCover)
         cameraCover.isHidden = false
@@ -123,10 +122,15 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
                 self.initialVolume = slider!.value
             }
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8) {
+            self.cameraCover.isHidden = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        toggleTorch(on: false)
         cameraCover.isHidden = false
     }
     
@@ -154,9 +158,6 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
             DispatchQueue.main.async {
                 self.videoPreviewLayer.frame = self.previewView.bounds
                 self.view.bringSubviewToFront(self.activityIndicator)
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.3) {
-                    self.cameraCover.isHidden = true
-                }
             }
         }
     }
