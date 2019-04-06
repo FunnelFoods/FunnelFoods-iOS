@@ -28,6 +28,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+        
+        // Check if receipt scanner is open
+        if (UIApplication.shared.topViewController() as? ReceiptScannerViewController) != nil {
+            
+            // ReceiptScannerViewController is open, make sure changes in audio don't snap a bajillion photos
+            UIApplication.shared.topViewController()?.viewDidDisappear(true)
+            
+        }
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -41,6 +49,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        
+        // Check if receipt scanner is open
+        if (UIApplication.shared.topViewController() as? ReceiptScannerViewController) != nil {
+            
+            // ReceiptScannerViewController is open, initialize audio button listeners
+            UIApplication.shared.topViewController()?.viewWillAppear(true)
+            
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -48,5 +64,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+}
+
+extension UIApplication {
+    func topViewController(_ base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        switch (base) {
+        case let controller as UINavigationController:
+            return topViewController(controller.visibleViewController)
+        case let controller as UITabBarController:
+            return controller.selectedViewController.flatMap { topViewController($0) } ?? base
+        default:
+            return base?.presentedViewController.flatMap { topViewController($0) } ?? base
+        }
+    }
 }
 

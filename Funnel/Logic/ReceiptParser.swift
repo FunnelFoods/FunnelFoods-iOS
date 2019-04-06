@@ -14,9 +14,11 @@ class ReceiptParser: NSObject {
     var isReceipt = false
     
     func parse(string: String) -> Array<Any> {
-        if string.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+        // Trim all white spaces and newlines away
+        if (string.trimmingCharacters(in: .whitespacesAndNewlines) == "" || string == "Empty page!!") {
             return []
         } else {
+            // Do additional processing
             isReceipt = true
             return []
         }

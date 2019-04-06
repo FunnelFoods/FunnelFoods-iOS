@@ -12,16 +12,27 @@ import MediaPlayer
 
 class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDelegate {
     
+    // Camera variables
     let stillImageOutput = AVCapturePhotoOutput()
     var captureSession: AVCaptureSession!
     var videoPreviewLayer: AVCaptureVideoPreviewLayer!
+    var flashOn = false
+    
+    // Volume variables
+    var initialVolume: Float = 0.0
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var cameraCover: UIView!
     
     // MARK: Camera setup
-    // Camera button click
+    //Toggle flash
+    @IBAction func flash(_ sender: Any) {
+        toggleTorch(on: !flashOn)
+        flashOn = !flashOn
+    }
     
+    // Camera button click
     @IBAction func takePhoto(_ sender: Any) {
         // Blur camera and start activity indicator
         activityIndicator.startAnimating()
@@ -29,15 +40,15 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         //Create blur view and add to view
         if !UIAccessibility.isReduceTransparencyEnabled {
             activityIndicator.backgroundColor = .clear
-            let blurEffect = UIBlurEffect(style: .regular)
+            let blurEffect = UIBlurEffect(style: .dark)
             let blurEffectView = UIVisualEffectView(effect: blurEffect)
             //always fill the view
-            blurEffectView.frame = self.previewView.bounds
+            blurEffectView.frame = self.view.bounds
             blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             
             activityIndicator.addSubview(blurEffectView)
             
-            let spinner = UIActivityIndicatorView(style: .gray)
+            let spinner = UIActivityIndicatorView(style: .whiteLarge)
             spinner.startAnimating()
             spinner.frame = self.previewView.bounds
             spinner.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -54,6 +65,9 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     // Setup camera
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Hide camera as it's loading
+        self.view.bringSubviewToFront(cameraCover)
         
         // Rotate and lock
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
@@ -76,15 +90,40 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         catch let error  {
             print("Error Unable to initialize back camera:  \(error.localizedDescription)")
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        // Setup volume buttons
+        AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
+        do { try AVAudioSession.sharedInstance().setActive(true) }
+        catch { debugPrint("\(error)") }
         
+        // Hide volume
+        let volumeView = MPVolumeView(frame: CGRect.zero)
+        volumeView.frame.origin = CGPoint(x: previewView.frame.origin.x, y:previewView.frame.origin.y + previewView.frame.height / 2)
+        self.view.addSubview(volumeView)
+        self.view.sendSubviewToBack(volumeView)
+        
+        // Manipulate slider when it is near max to not be max
+        let slider = (view.subviews.filter{$0 is MPVolumeView})[0].subviews.first(where: { $0 is UISlider }) as? UISlider
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            if slider!.value == 1.00 {
+                self.initialVolume = 0.98
+                slider!.value = 0.98
+            } else if slider!.value == 0.00 {
+                self.initialVolume = 0.02
+                slider!.value = 0.02
+            } else {
+                self.initialVolume = slider!.value
+            }
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // This is to make it so that the camera view doesn't have the animation
-        previewView.isHidden = false
+        cameraCover.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -94,6 +133,13 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         
         // Reset orientation
         AppUtility.lockOrientation(.all)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
+        do { try AVAudioSession.sharedInstance().setActive(false) }
+        catch { debugPrint("\(error)") }
     }
     
     override func didReceiveMemoryWarning() {
@@ -129,10 +175,6 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         // Fetch OCR
         let output = OCR().output(image: image!)
         
-        // Stop the activity indicator because processing is done
-        activityIndicator.stopAnimating()
-        
-        
         // Parse Receipt, create instance of receiptParser
         let receiptParser = ReceiptParser()
         let result = receiptParser.parse(string: output)
@@ -141,26 +183,52 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
             // Process output
         } else {
             // Not a receipt
-            let alert = UIAlertController(title: "No receipt found", message: "Make sure to align the receipt properly with the camera.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
+//            let alert = UIAlertController(title: "No receipt found", message: "Make sure to align the receipt properly with the camera.", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+//            self.present(alert, animated: true)
+        }
+        
+        // Stop the activity indicator because processing is done
+        activityIndicator.stopAnimating()
+    }
+    
+    // MARK: Flash handler
+    func toggleTorch(on: Bool) {
+        guard let device = AVCaptureDevice.default(for: .video) else { return }
+        
+        if device.hasTorch {
+            do {
+                try device.lockForConfiguration()
+                
+                if on == true {
+                    device.torchMode = .on
+                } else {
+                    device.torchMode = .off
+                }
+                
+                device.unlockForConfiguration()
+            } catch {
+                print("Torch could not be used")
+            }
+        } else {
+            print("Torch is not available")
         }
     }
     
     // MARK: Volume button handlers
-    func listenVolumeButton() {
-        let audioSession = AVAudioSession.sharedInstance()
-        do {
-            try audioSession.setActive(true)
-        } catch {
-            print("some error")
-        }
-        audioSession.addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
-    }
-    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "outputVolume" {
-            print("got in here")
+        let slider = (view.subviews.filter{$0 is MPVolumeView})[0].subviews.first(where: { $0 is UISlider }) as? UISlider
+    
+        // Take photo on volume change
+        takePhoto("Volume Button" as Any)
+        if initialVolume == 1.00 || slider?.value == 1.00 {
+            slider?.value = 0.98
+            initialVolume = 0.98
+        } else if initialVolume == 0.00 || slider?.value == 0.00 {
+            slider?.value = 0.02
+            initialVolume = 0.02
+        } else {
+            slider?.value = initialVolume
         }
     }
 
