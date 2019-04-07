@@ -119,14 +119,14 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         let slider = (view.subviews.filter{$0 is MPVolumeView})[0].subviews.first(where: { $0 is UISlider }) as? UISlider
         slider?.isContinuous = false
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
             self.initialVolume = slider!.value
             self.cameraCover.isHidden = true
             self.activityIndicator.stopAnimating()
-            self.setSlider()
         }
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.85) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.55) {
+            self.setSlider()
             slider?.addTarget(self, action: #selector(self.volumeButtonPressed), for: .valueChanged)
         }
     }
@@ -135,9 +135,6 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         super.viewWillDisappear(animated)
         toggleTorch(on: false)
         cameraCover.isHidden = false
-        
-        let slider = (view.subviews.filter{$0 is MPVolumeView})[0].subviews.first(where: { $0 is UISlider }) as? UISlider
-        slider?.removeTarget(self, action: #selector(volumeButtonPressed), for: .valueChanged)
         setBacktoInitialVolume()
         
         // Unenforce portrait mode
@@ -209,6 +206,7 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     
     func setBacktoInitialVolume() {
         let slider = (view.subviews.filter{$0 is MPVolumeView})[0].subviews.first(where: { $0 is UISlider }) as? UISlider
+        slider?.removeTarget(self, action: #selector(volumeButtonPressed), for: .valueChanged)
         slider!.value = initialVolume
         
     }
