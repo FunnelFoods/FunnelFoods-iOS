@@ -27,7 +27,8 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     @IBOutlet weak var cameraCover: UIView!
     
     // MARK: Camera setup
-    //Toggle flash
+    
+    // Toggle flash
     @IBAction func flash(_ sender: Any) {
         toggleTorch(on: !flashOn)
         flashOn = !flashOn
@@ -67,15 +68,26 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         }
     }
     
-    // Setup camera
+    // Cancel button
+    @IBAction func cancel(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Rotate and lock
+        // Force portrait mode
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Force portrait mode
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         
         captureSession = AVCaptureSession()
-        captureSession.sessionPreset = .medium
+        captureSession.sessionPreset = .photo
         guard let backCamera = AVCaptureDevice.default(for: AVMediaType.video)
             else {
                 print("Unable to access back camera!")
@@ -92,10 +104,7 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         catch let error  {
             print("Error Unable to initialize back camera:  \(error.localizedDescription)")
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
         // Hide camera as it's loading
         self.view.bringSubviewToFront(cameraCover)
         cameraCover.isHidden = false
@@ -114,10 +123,10 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
             self.initialVolume = slider!.value
             self.cameraCover.isHidden = true
             self.activityIndicator.stopAnimating()
+            self.setSlider()
         }
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.85) {
-            self.setSlider()
             slider?.addTarget(self, action: #selector(self.volumeButtonPressed), for: .valueChanged)
         }
     }
@@ -131,7 +140,7 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         slider?.removeTarget(self, action: #selector(volumeButtonPressed), for: .valueChanged)
         setBacktoInitialVolume()
         
-        // Reset orientation
+        // Unenforce portrait mode
         AppUtility.lockOrientation(.all)
     }
     
@@ -150,40 +159,6 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
                 self.view.bringSubviewToFront(self.activityIndicator)
             }
         }
-    }
-    
-    // MARK: Capture image and process (Tesseract logic in Logic/OCR.swift, receipt parsing Logic/ReceiptParser.swift)
-    
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        
-        guard let imageData = photo.fileDataRepresentation()
-            else { return }
-        
-        let image = UIImage(data: imageData)
-        
-        // Fetch OCR
-        let output = OCR().output(image: image!)
-        
-        // Parse Receipt, create instance of receiptParser
-        let receiptParser = ReceiptParser()
-        let result = receiptParser.parse(string: output)
-        
-        if receiptParser.isReceipt {
-            // Stop the activity indicator because processing is done
-            activityIndicator.stopAnimating()
-            
-            // Process output
-            
-            
-        } else {
-            // Not a receipt
-            let alert = UIAlertController(title: "No receipt found", message: "Make sure to align the receipt properly with the camera.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {action in self.activityIndicator.stopAnimating()}))
-            self.present(alert, animated: true)
-        }
-        
-        
-        
     }
     
     // MARK: Flash handler
@@ -235,6 +210,40 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     func setBacktoInitialVolume() {
         let slider = (view.subviews.filter{$0 is MPVolumeView})[0].subviews.first(where: { $0 is UISlider }) as? UISlider
         slider!.value = initialVolume
+        
+    }
+    
+    // MARK: Capture image and process (Tesseract logic in Logic/OCR.swift, receipt parsing Logic/ReceiptParser.swift)
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        
+        guard let imageData = photo.fileDataRepresentation()
+            else { return }
+        
+        let image = UIImage(data: imageData)
+        
+        // Fetch OCR
+        let output = OCR().output(image: image!)
+        
+        // Parse Receipt, create instance of receiptParser
+        let receiptParser = ReceiptParser()
+        let result = receiptParser.parse(string: output)
+        
+        if receiptParser.isReceipt {
+            // Stop the activity indicator because processing is done
+            activityIndicator.stopAnimating()
+            
+            // Process output
+            
+            
+        } else {
+            // Not a receipt
+            let alert = UIAlertController(title: "No receipt found", message: "Make sure to align the receipt properly with the camera.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {action in self.activityIndicator.stopAnimating()}))
+            self.present(alert, animated: true)
+        }
+        
+        
         
     }
 

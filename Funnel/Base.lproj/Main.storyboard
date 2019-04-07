@@ -52,7 +52,7 @@
                                                         <rect key="frame" x="208" y="0.0" width="137" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WT0-Fo-HXe" customClass="SearchButton" customModule="Funnel" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="162" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="50"/>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -169,8 +169,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <state key="normal" title="Cancel"/>
                                         <connections>
-                                            <action selector="takePhoto:" destination="0EJ-hB-HjY" eventType="touchUpInside" id="xAv-G3-PZZ"/>
-                                            <segue destination="ptI-J8-NgW" kind="show" id="gnD-uP-voF"/>
+                                            <action selector="cancel:" destination="0EJ-hB-HjY" eventType="touchUpInside" id="Pw6-XB-hv3"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -219,13 +218,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="AJC-tQ-lZh">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="778"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="729"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ohj-HN-wTI">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="389"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="364.66666666666669"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="top" translatesAutoresizingMaskIntoConstraints="NO" id="bKO-uM-wvg">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="389"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="364.66666666666669"/>
                                                 <connections>
                                                     <segue destination="IIE-Vy-qqU" kind="embed" id="A5S-CA-ZS2"/>
                                                 </connections>
@@ -240,7 +239,7 @@
                                                         </constraints>
                                                         <state key="normal" image="Scan"/>
                                                         <connections>
-                                                            <segue destination="0EJ-hB-HjY" kind="show" id="f6e-Gt-Yfr"/>
+                                                            <segue destination="0EJ-hB-HjY" kind="presentation" id="8yq-J6-tI1"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dO4-bz-bdB">
@@ -275,7 +274,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="rqb-Qp-BYh">
-                                        <rect key="frame" x="0.0" y="389" width="375" height="389"/>
+                                        <rect key="frame" x="0.0" y="364.66666666666674" width="375" height="364.33333333333326"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeU-QN-SuY">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
@@ -290,13 +289,13 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="223" height="40"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UPJ-WF-aWm">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="223" height="27"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="223" height="26.666666666666668"/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
                                                                             </label>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current stock of food available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgs-ZW-vho">
-                                                                                <rect key="frame" x="0.0" y="29" width="223" height="11"/>
+                                                                                <rect key="frame" x="0.0" y="28.666666666666625" width="223" height="11.333333333333332"/>
                                                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -307,7 +306,7 @@
                                                                         <rect key="frame" x="223" y="0.0" width="137" height="40"/>
                                                                         <subviews>
                                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3a6-8I-mc0" customClass="SearchButton" customModule="Funnel" customModuleProvider="target">
-                                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="40"/>
+                                                                                <rect key="frame" x="0.0" y="0.0" width="157" height="40"/>
                                                                             </button>
                                                                         </subviews>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -349,7 +348,7 @@
                                                 </constraints>
                                             </view>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fay-zs-XgM">
-                                                <rect key="frame" x="0.0" y="81" width="375" height="308"/>
+                                                <rect key="frame" x="0.0" y="81" width="375" height="283.33333333333331"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="sectionIndexBackgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <prototypes>
@@ -685,7 +684,7 @@
                                                         <rect key="frame" x="265" y="0.0" width="80" height="50"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMD-Ri-bcF" customClass="SearchButton" customModule="Funnel" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="105" height="50"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="30" height="50"/>
                                                             </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -776,7 +775,4 @@
         <image name="Scan" width="30" height="30"/>
         <image name="Shop" width="23" height="23"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="gnD-uP-voF"/>
-    </inferredMetricsTieBreakers>
 </document>
