@@ -17,7 +17,7 @@ class OCR: NSObject, G8TesseractDelegate {
     func output(image: UIImage) -> String {
         tesseract.engineMode = .lstmOnly
         tesseract.pageSegmentationMode = .auto // Enable orientation detection with tesseract.pageSegmentationMode = .autoOSD
-        tesseract.image = image.scaleImage(640)!
+        tesseract.image = image.scaleImage(1500)!
         tesseract.recognize()
         print("Text: \(tesseract.recognizedText!)")
         return tesseract.recognizedText

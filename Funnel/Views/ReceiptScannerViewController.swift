@@ -221,11 +221,11 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         let image = UIImage(data: imageData)
         
         // Fetch OCR
-        let output = OCR().output(image: image!)
+        let output = OCR().output(image: UIImage(imageLiteralResourceName: "test_receipt"))
         
         // Parse Receipt, create instance of receiptParser
         let receiptParser = ReceiptParser()
-        let result = receiptParser.parse(string: output)
+        let result = receiptParser.parse(receiptString: output)
         
         if receiptParser.isReceipt {
             // Stop the activity indicator because processing is done
@@ -236,7 +236,7 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
             
         } else {
             // Not a receipt
-            let alert = UIAlertController(title: "No receipt found", message: "Make sure to align the receipt properly with the camera.", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Please try again", message: "No receipt found or make sure to align the receipt properly with the camera.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {action in self.activityIndicator.stopAnimating()}))
             self.present(alert, animated: true)
         }
