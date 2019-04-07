@@ -1,6 +1,6 @@
 # Funnel-iOS
 
-Open the ```.xcworkspace``` file.
+Clone the repository and open the ```.xcworkspace``` file.
 
 ## Important file locations
 
