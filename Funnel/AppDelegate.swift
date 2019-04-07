@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (UIApplication.shared.topViewController() as? ReceiptScannerViewController) != nil {
             
             // ReceiptScannerViewController is open, make sure changes in audio don't snap a bajillion photos
-            UIApplication.shared.topViewController()?.viewDidDisappear(true)
+            UIApplication.shared.topViewController()?.viewWillDisappear(true)
             
         }
     }

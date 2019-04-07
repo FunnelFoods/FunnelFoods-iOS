@@ -20,6 +20,7 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     
     // Volume variables
     var initialVolume: Float = 0.0
+    var didSetVolume = false
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -99,10 +100,6 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         self.view.bringSubviewToFront(cameraCover)
         cameraCover.isHidden = false
         
-        AVAudioSession.sharedInstance().addObserver(self, forKeyPath: "outputVolume", options: NSKeyValueObservingOptions.new, context: nil)
-        do { try AVAudioSession.sharedInstance().setActive(true) }
-        catch { debugPrint("\(error)") }
-        
         // Hide volume
         let volumeView = MPVolumeView(frame: CGRect.zero)
         volumeView.frame.origin = CGPoint(x: previewView.frame.origin.x, y:previewView.frame.origin.y + previewView.frame.height / 2)
@@ -111,20 +108,17 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         
         // Manipulate slider when it is near max to not be max
         let slider = (view.subviews.filter{$0 is MPVolumeView})[0].subviews.first(where: { $0 is UISlider }) as? UISlider
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-            if slider!.value == 1.00 {
-                self.initialVolume = 0.98
-                slider!.value = 0.98
-            } else if slider!.value == 0.00 {
-                self.initialVolume = 0.02
-                slider!.value = 0.02
-            } else {
-                self.initialVolume = slider!.value
-            }
-        }
+        slider?.isContinuous = false
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.8) {
+            self.initialVolume = slider!.value
             self.cameraCover.isHidden = true
+            self.activityIndicator.stopAnimating()
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.85) {
+            self.setSlider()
+            slider?.addTarget(self, action: #selector(self.volumeButtonPressed), for: .valueChanged)
         }
     }
     
@@ -132,14 +126,10 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         super.viewWillDisappear(animated)
         toggleTorch(on: false)
         cameraCover.isHidden = false
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        cameraCover.isHidden = false
-        AVAudioSession.sharedInstance().removeObserver(self, forKeyPath: "outputVolume")
-        do { try AVAudioSession.sharedInstance().setActive(false) }
-        catch { debugPrint("\(error)") }
+        
+        let slider = (view.subviews.filter{$0 is MPVolumeView})[0].subviews.first(where: { $0 is UISlider }) as? UISlider
+        slider?.removeTarget(self, action: #selector(volumeButtonPressed), for: .valueChanged)
+        setBacktoInitialVolume()
         
         // Reset orientation
         AppUtility.lockOrientation(.all)
@@ -183,6 +173,8 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
             activityIndicator.stopAnimating()
             
             // Process output
+            
+            
         } else {
             // Not a receipt
             let alert = UIAlertController(title: "No receipt found", message: "Make sure to align the receipt properly with the camera.", preferredStyle: .alert)
@@ -218,20 +210,32 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     }
     
     // MARK: Volume button handlers
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        let slider = (view.subviews.filter{$0 is MPVolumeView})[0].subviews.first(where: { $0 is UISlider }) as? UISlider
-    
-        // Take photo on volume change
-        takePhoto("Volume Button" as Any)
-        if initialVolume == 1.00 || slider?.value == 1.00 {
-            slider?.value = 0.98
-            initialVolume = 0.98
-        } else if initialVolume == 0.00 || slider?.value == 0.00 {
-            slider?.value = 0.02
-            initialVolume = 0.02
+    @objc func volumeButtonPressed() {
+        if didSetVolume {
+            didSetVolume = false
         } else {
-            slider?.value = initialVolume
+            takePhoto("Volume Button" as Any)
+            setSlider()
         }
+    }
+    
+    func setSlider() {
+        let slider = (view.subviews.filter{$0 is MPVolumeView})[0].subviews.first(where: { $0 is UISlider }) as? UISlider
+        didSetVolume = true
+        
+        if slider!.value == 1.0 || initialVolume == 1.0 {
+            slider!.value = 0.95
+        } else if slider!.value == 0.0 || initialVolume == 0.0 {
+            slider!.value = 0.05
+        } else {
+            slider!.value = initialVolume
+        }
+    }
+    
+    func setBacktoInitialVolume() {
+        let slider = (view.subviews.filter{$0 is MPVolumeView})[0].subviews.first(where: { $0 is UISlider }) as? UISlider
+        slider!.value = initialVolume
+        
     }
 
     /*
