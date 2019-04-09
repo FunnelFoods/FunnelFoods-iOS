@@ -9,7 +9,7 @@
 import UIKit
 
 struct Receipt {
-    let ingredients: Dictionary<String, Double>
+    let ingredients: Dictionary<String, Float>
 }
 
 class ReceiptParser: NSObject {
@@ -18,7 +18,7 @@ class ReceiptParser: NSObject {
     var isReceipt = false
     
     //Setup ingredients dictionary
-    var ingredientsDictionary: Dictionary<String, Double> = [:]
+    var ingredientsDictionary: Dictionary<String, Float> = [:]
     
     func parse(receiptString: String) -> Receipt {
         // Trim all white spaces and newlines away
@@ -28,30 +28,80 @@ class ReceiptParser: NSObject {
             // Do additional processing
             isReceipt = true
             
-            let range = NSRange(location: 0, length: receiptString.utf16.count)
+            // Receipt variables
+            var totalCost: Float = Float(0)
+    
             let regex = try! NSRegularExpression(pattern: "[^a-zA-Z]")
-            let receiptByLine = receiptString.lines
             
             // Strip all whitespaces from each line
             var trimmedLines: Array<String> = []
-            for line in receiptByLine {
+            for line in receiptString.lines {
                 let trimmedLine = line.trimmingCharacters(in: .whitespaces)
                 
                 // Check if line has numbers and words
                 if trimmedLine.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) != nil && trimmedLine.hasNumber() {
-                    // ** Implement additional logic here **
+                    trimmedLines.append(line)
                     
+                    // ** Implement any additional logic here **
                     // Find subtotal
                     if trimmedLine.lowercased().contains("subtotal") {
                         // This line contains the word subtotals
+                        totalCost = getCost(line: line) ?? Float(0)
+                        break
                     }
+                }
+            }
+            
+            // Create dictionary of items and prices
+            for i in 0..<trimmedLines.count {
+                let price: Float = getCost(line: trimmedLines[i]) ?? Float(0)
+                if price >= Float(0) {
+                    totalCost -= price
+                    if totalCost < Float(0) {
+                        break
+                    }
+                    let item = "lol"
+                    ingredientsDictionary[item] = price
                 }
             }
             
             
         }
         
+        if ingredientsDictionary.isEmpty {
+            isReceipt = false
+        }
+        
         return Receipt(ingredients: ingredientsDictionary)
+    }
+    
+    func getCost(line: String) -> Float? {
+        var price = Float(-1.00)
+        let lineBySpaces = line.components(separatedBy: " ")
+        for word in lineBySpaces {
+            // Check for dollar signs
+            if word.contains("$") {
+                let priceString = word.replacingOccurrences(of: "$", with: "", options: NSString.CompareOptions.literal, range:nil)
+                if Float(priceString) != nil  {
+                    //Is price
+                    price = Float(price)
+                }
+            //Check if word is a number in itself
+            } else if Float(word) != nil {
+                // The word is a number, and that is the price
+                price = Float(word)!
+            }
+        }
+        
+        // Check for errors in OCR of price and correct
+        if price > 0 {
+            if floor(price) == price && price.truncatingRemainder(dividingBy: 10.0) != 0 {
+                return price / 100
+            }
+        }
+        
+        // No price found, return nil
+        return nil
     }
 }
 
