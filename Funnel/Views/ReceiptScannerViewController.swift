@@ -22,6 +22,9 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     var initialVolume: Float = 0.0
     var didSetVolume = false
     
+    // OCR variables
+    var isDoingOCR: Bool = false
+    
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var cameraCover: UIView!
@@ -142,7 +145,6 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     }
     
     func setupLivePreview() {
-        
         videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         
         videoPreviewLayer.videoGravity = .resizeAspect
@@ -182,13 +184,14 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
     }
     
     // MARK: Volume button handlers
+    /// DISABLED: for now
     @objc func volumeButtonPressed() {
-        if didSetVolume {
-            didSetVolume = false
-        } else {
-            takePhoto("Volume Button" as Any)
-            setSlider()
-        }
+//        if didSetVolume {
+//            didSetVolume = false
+//        } else {
+//            takePhoto("Volume Button" as Any)
+//            setSlider()
+//        }
     }
     
     func setSlider() {
@@ -218,31 +221,29 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
         guard let imageData = photo.fileDataRepresentation()
             else { return }
         
-        let image = UIImage(data: imageData)
+        let image = UIImage(data: imageData)!
         
         // Fetch OCR
-        let output = OCR().output(image: UIImage(imageLiteralResourceName: "test_receipt"))
+        let ocr = OCR()
+        let output = ocr.output(image: UIImage(imageLiteralResourceName: "test_receipt"))
         
+        activityIndicator.stopAnimating()
         // Parse Receipt, create instance of receiptParser
         let receiptParser = ReceiptParser()
-        let result = receiptParser.parse(receiptString: output)
         
-        if receiptParser.isReceipt {
+        if let result = receiptParser.parse(receiptString: output) {
             // Stop the activity indicator because processing is done
-            activityIndicator.stopAnimating()
+            
             
             // Process output
             
             
         } else {
-            // Not a receipt
+            // Not a receipt, present error alert
             let alert = UIAlertController(title: "Please try again", message: "No receipt found or make sure to align the receipt properly with the camera.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {action in self.activityIndicator.stopAnimating()}))
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true)
         }
-        
-        
-        
     }
 
     /*

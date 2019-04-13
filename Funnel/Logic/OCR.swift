@@ -13,14 +13,22 @@ import TesseractOCR
 class OCR: NSObject, G8TesseractDelegate {
     
     let tesseract = G8Tesseract(language: "eng")!
+    var isActive = false
 
     func output(image: UIImage) -> String {
-        tesseract.engineMode = .lstmOnly
-        tesseract.pageSegmentationMode = .auto // Enable orientation detection with tesseract.pageSegmentationMode = .autoOSD
-        tesseract.image = image.scaleImage(1500)!
-        tesseract.recognize()
-        print("Text: \(tesseract.recognizedText!)")
-        return tesseract.recognizedText
+        // Make sure that multiple instances of Tesseract are not running simultaneously
+        if OCR().isActive {
+            return ""
+        } else {
+            OCR().isActive = true
+            tesseract.engineMode = .lstmOnly
+            tesseract.pageSegmentationMode = .auto // Enable orientation detection with tesseract.pageSegmentationMode = .autoOSD
+            tesseract.image = image.scaleImage(1500)!
+            tesseract.recognize()
+            // Wait for OCR to finish
+            OCR().isActive = false
+            return tesseract.recognizedText
+        }
    }
 }
 

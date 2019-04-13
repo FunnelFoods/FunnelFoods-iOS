@@ -9,29 +9,32 @@
 import UIKit
 
 struct Receipt {
-    let ingredients: Dictionary<String, Float>
+    let ingredients: Array<Ingredient>
+    let total: Price
+}
+
+struct Price {
+    var cost: Float
+    let currency: String
+}
+
+struct Ingredient {
+    let name: String
+    let cost: Price
 }
 
 class ReceiptParser: NSObject {
-   
-    // Defaults to not a receipt
-    var isReceipt = false
     
-    //Setup ingredients dictionary
-    var ingredientsDictionary: Dictionary<String, Float> = [:]
-    
-    func parse(receiptString: String) -> Receipt {
+    func parse(receiptString: String) -> Receipt? {
         // Trim all white spaces and newlines away
         if (receiptString.trimmingCharacters(in: .whitespacesAndNewlines) == "" || receiptString == "Empty page!!") {
-            // Not a receipt, return empty IngredientsList
+            // Not a receipt
+            return nil
         } else {
-            // Do additional processing
-            isReceipt = true
             
             // Receipt variables
-            var totalCost: Float = Float(0)
-    
-            let regex = try! NSRegularExpression(pattern: "[^a-zA-Z]")
+            var ingredientsList: Array<Ingredient> = []
+            var totalCost: Price?
             
             // Strip all whitespaces from each line
             var trimmedLines: Array<String> = []
@@ -42,66 +45,136 @@ class ReceiptParser: NSObject {
                 if trimmedLine.rangeOfCharacter(from: CharacterSet.alphanumerics.inverted) != nil && trimmedLine.hasNumber() {
                     trimmedLines.append(line)
                     
-                    // ** Implement any additional logic here **
-                    // Find subtotal
-                    if trimmedLine.lowercased().contains("subtotal") {
-                        // This line contains the word subtotals
-                        totalCost = getCost(line: line) ?? Float(0)
+                    // ** Implement any additional logic here!!! **
+                    
+                    if let subtotal = getSubtotal(line: line) {
+                        // This is a subtotal!
+                        totalCost = subtotal
                         break
+                    } else {
+                        // This line is not a subtotal, so try to get items and costs from this line and append the results to the ingredients dictionary
+                        if let ingredient = getIngredient(line: line) {
+                            ingredientsList.append(ingredient)
+                        }
                     }
                 }
             }
             
-            // Create dictionary of items and prices
-            for i in 0..<trimmedLines.count {
-                let price: Float = getCost(line: trimmedLines[i]) ?? Float(0)
-                if price >= Float(0) {
-                    totalCost -= price
-                    if totalCost < Float(0) {
-                        break
+            print(trimmedLines)
+            print(ingredientsList)
+            
+            // Return statements
+            if ingredientsList.isEmpty {
+                return nil
+            } else {
+                if totalCost != nil {
+                    return Receipt(ingredients: ingredientsList, total: totalCost!)
+                } else {
+                    // No subtotal was found, calculate our own subtotal
+                    var total = Price(cost: 0.00, currency: ingredientsList[0].cost.currency)
+                    for ingredient in ingredientsList {
+                        total.cost += ingredient.cost.cost
                     }
-                    let item = "lol"
-                    ingredientsDictionary[item] = price
+                    return Receipt(ingredients: ingredientsList, total: total)
                 }
             }
-            
-            
         }
-        
-        if ingredientsDictionary.isEmpty {
-            isReceipt = false
-        }
-        
-        return Receipt(ingredients: ingredientsDictionary)
     }
     
-    func getCost(line: String) -> Float? {
-        var price = Float(-1.00)
-        let lineBySpaces = line.components(separatedBy: " ")
-        for word in lineBySpaces {
-            // Check for dollar signs
-            if word.contains("$") {
-                let priceString = word.replacingOccurrences(of: "$", with: "", options: NSString.CompareOptions.literal, range:nil)
-                if Float(priceString) != nil  {
-                    //Is price
-                    price = Float(price)
+    func getSubtotal(line: String) -> Price? {
+        let keywords: Array<String> = ["subtotal"]
+        
+        for word in keywords {
+            if line.lowercased().contains(word.lowercased()) {
+                if let total = getPrice(line: line) {
+                    return total
                 }
-            //Check if word is a number in itself
-            } else if Float(word) != nil {
-                // The word is a number, and that is the price
-                price = Float(word)!
+            }
+        }
+        return nil
+    }
+    
+    func getIngredient(line: String) -> Ingredient? {
+        if let cost = getPrice(line: line), let item = getItem(line: line) {
+            return Ingredient(name: item, cost: cost)
+        } else {
+            return nil
+        }
+    }
+    
+    func getItem(line: String) -> String? {
+        if let cost = getPrice(line: line) {
+            // Cost is not nil! So you can get an item from the line
+            var item: String?
+            let lineBySpaces = line.components(separatedBy: " ")
+            var costWord: String = ""
+            
+            for word in lineBySpaces {
+                if word.contains(cost.currency) || Float(word) == cost.cost {
+                    costWord = word
+                }
+            }
+            
+            item = line.replacingOccurrences(of: costWord, with: "").trimmingCharacters(in: .whitespaces)
+            
+            return item
+            
+        } else {
+            return nil
+        }
+    }
+    
+    func getPrice(line: String) -> Price? {
+        let ignores = ["special", "kg"] // Ignore any line with these words in it, all lower case
+        let locale = Locale.current
+        let currencySymbol = locale.currencySymbol!
+        let keywords = ["$", "£", "€", currencySymbol] // Checks if there are numbers after these symbols
+        
+        // Default price
+        var cost: Float?
+        var currency: String?
+        
+        // Check if there are ignores and do not do anything with these lines
+        for word in ignores {
+            if line.lowercased().contains(word.lowercased()) {
+                return nil
+            }
+        }
+        
+        // Continue processing because everything is G
+        let lineBySpaces = line.components(separatedBy: " ")
+        
+        for word in lineBySpaces {
+            for keyword in keywords {
+                if word.contains(keyword) {
+                    currency = keyword
+                    
+                    // Replace the dollar signs with an empty string and check if the following characters form a number
+                    let costString = word.replacingOccurrences(of: keyword, with: "", options: NSString.CompareOptions.literal, range:nil)
+                    if Float(costString) != nil {
+                        cost = Float(costString)
+                    }
+                } else if Float(word) != nil { // Also check if the word itself is a price
+                    // No currency provided, so use locale currency
+                    currency = currencySymbol
+                    cost = Float(word)
+                }
             }
         }
         
         // Check for errors in OCR of price and correct
-        if price > 0 {
-            if floor(price) == price && price.truncatingRemainder(dividingBy: 10.0) != 0 {
-                return price / 100
+        if cost != nil {
+            let cost = cost!
+            if floor(cost) == cost && cost.truncatingRemainder(dividingBy: 10.0) != Float(0) && currency != nil {
+                return Price(cost: cost/100, currency: currency!)
             }
         }
         
-        // No price found, return nil
-        return nil
+        if cost != nil && currency != nil {
+            return Price(cost: cost!, currency: currency!)
+        } else {
+            return nil
+        }
     }
 }
 
