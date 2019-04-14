@@ -1,26 +1,8 @@
 PODS:
-  - AWSAppSync (2.10.3):
-    - AWSCore (~> 2.9.0)
-    - ReachabilitySwift (~> 4.3.0)
-    - SQLite.swift (= 0.11.5)
-  - AWSCore (2.9.4)
-  - ReachabilitySwift (4.3.1)
-  - SQLite.swift (0.11.5):
-    - SQLite.swift/standard (= 0.11.5)
-  - SQLite.swift/standard (0.11.5)
   - TesseractOCRiOS (4.0.0)
 
 DEPENDENCIES:
-  - AWSAppSync
-  - AWSCore
   - TesseractOCRiOS (from `https://github.com/parallaxe/Tesseract-OCR-iOS.git`, branch `macos-support`)
-
-SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - AWSAppSync
-    - AWSCore
-    - ReachabilitySwift
-    - SQLite.swift
 
 EXTERNAL SOURCES:
   TesseractOCRiOS:
@@ -33,12 +15,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/parallaxe/Tesseract-OCR-iOS.git
 
 SPEC CHECKSUMS:
-  AWSAppSync: cc5e6716f712cf9a9bdc176e471027516ac5087d
-  AWSCore: 8539eaa1d687d50b6b127db5cb600e4c6b37cd4e
-  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
-  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
   TesseractOCRiOS: f51bbcd27d84b9ac59950790413a7e4219e84483
 
-PODFILE CHECKSUM: 4321e21a961852989e55da17159346dcf0c5281d
+PODFILE CHECKSUM: d40d7f5cd25ed8f321ea4a20e05d0465937b730e
 
 COCOAPODS: 1.5.3

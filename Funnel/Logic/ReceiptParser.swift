@@ -20,7 +20,7 @@ struct Price {
 
 struct Ingredient {
     let name: String
-    let cost: Price
+    let price: Price
 }
 
 class ReceiptParser: NSObject {
@@ -72,9 +72,9 @@ class ReceiptParser: NSObject {
                     return Receipt(ingredients: ingredientsList, total: totalCost!)
                 } else {
                     // No subtotal was found, calculate our own subtotal
-                    var total = Price(cost: 0.00, currency: ingredientsList[0].cost.currency)
+                    var total = Price(cost: 0.00, currency: ingredientsList[0].price.currency)
                     for ingredient in ingredientsList {
-                        total.cost += ingredient.cost.cost
+                        total.cost += ingredient.price.cost
                     }
                     return Receipt(ingredients: ingredientsList, total: total)
                 }
@@ -96,8 +96,9 @@ class ReceiptParser: NSObject {
     }
     
     func getIngredient(line: String) -> Ingredient? {
-        if let cost = getPrice(line: line), let item = getItem(line: line) {
-            return Ingredient(name: item, cost: cost)
+        // This line has a cost, so it must have an item associated with it, therefore, call getItem on the line
+        if let price = getPrice(line: line), let item = getItem(line: line) {
+            return Ingredient(name: item, price: price)
         } else {
             return nil
         }

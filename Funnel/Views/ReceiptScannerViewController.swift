@@ -239,7 +239,7 @@ class ReceiptScannerViewController: UIViewController, AVCapturePhotoCaptureDeleg
             
             
         } else {
-            // Not a receipt, present error alert
+            // Not a receipt because result is nil, present error alert
             let alert = UIAlertController(title: "Please try again", message: "No receipt found or make sure to align the receipt properly with the camera.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
             self.present(alert, animated: true)
