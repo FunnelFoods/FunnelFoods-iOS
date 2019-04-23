@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1010492922691FA2006A0770 /* IngredientTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1010492822691FA2006A0770 /* IngredientTableView.swift */; };
 		1026D63A21DE189B008C5BAC /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1026D63921DE189B008C5BAC /* SearchButton.swift */; };
 		1026D63C21DE1AE0008C5BAC /* CookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1026D63B21DE1AE0008C5BAC /* CookViewController.swift */; };
 		1026D63E21DE1AEF008C5BAC /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1026D63D21DE1AEF008C5BAC /* ShopViewController.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1010492822691FA2006A0770 /* IngredientTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableView.swift; sourceTree = "<group>"; };
 		1026D63921DE189B008C5BAC /* SearchButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
 		1026D63B21DE1AE0008C5BAC /* CookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookViewController.swift; sourceTree = "<group>"; };
 		1026D63D21DE1AEF008C5BAC /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 			children = (
 				1026D63921DE189B008C5BAC /* SearchButton.swift */,
 				10F5A46121D479F700D127C2 /* GradientView.swift */,
+				1010492822691FA2006A0770 /* IngredientTableView.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1010492922691FA2006A0770 /* IngredientTableView.swift in Sources */,
 				1026F5EC21D7B7330067772E /* SpendingViewController.swift in Sources */,
 				10673E3121D7C56B0064FD13 /* PageViewControllers.swift in Sources */,
 				10644A9422570C6D00291D63 /* ReceiptScannerViewController.swift in Sources */,

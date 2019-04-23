@@ -127,7 +127,7 @@ class ReceiptParser: NSObject {
     }
     
     func getPrice(line: String) -> Price? {
-        let ignores = ["special"] // Ignore any line with these words in it, all lower case
+        let ignores = ["special", "kg"] // Ignore any line with these words in it, all lower case
         let locale = Locale.current
         let currencySymbol = locale.currencySymbol!
         let keywords = ["$", "£", "€", currencySymbol] // Checks if there are numbers after these symbols
@@ -157,11 +157,11 @@ class ReceiptParser: NSObject {
                         cost = Float(costString)
                     }
                 }
-//                  else if Float(word) != nil { // Also check if the word itself is a price
-//                    // No currency provided, so use locale currency
-//                    currency = currencySymbol
-//                    cost = Float(word)
-//                }
+                  else if Float(word) != nil { // Also check if the word itself is a price
+                    // No currency provided, so use locale currency
+                    currency = currencySymbol
+                    cost = Float(word)
+                }
             }
         }
         
