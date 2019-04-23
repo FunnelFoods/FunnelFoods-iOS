@@ -5,7 +5,7 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -299,10 +299,10 @@
                                                 </connections>
                                             </containerView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VP1-gd-D4k">
-                                                <rect key="frame" x="30" y="60" width="315" height="30"/>
+                                                <rect key="frame" x="30" y="60" width="315" height="22"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eno-P0-R2w">
-                                                        <rect key="frame" x="0.0" y="0.0" width="157.66666666666666" height="30"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="157.66666666666666" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="Nus-Dp-H3x"/>
                                                         </constraints>
@@ -312,7 +312,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dO4-bz-bdB">
-                                                        <rect key="frame" x="157.66666666666663" y="0.0" width="157.33333333333337" height="30"/>
+                                                        <rect key="frame" x="157.66666666666663" y="0.0" width="157.33333333333337" height="22"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="WyU-bD-K00"/>
                                                         </constraints>
@@ -839,7 +839,7 @@
         <!--Log In View Controller-->
         <scene sceneID="NNa-60-ivR">
             <objects>
-                <viewController id="KP8-eM-ESP" customClass="LogInViewController" customModule="SnapchatProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="KP8-eM-ESP" customClass="LogInViewController" customModule="Funnel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Hwx-5W-iGh"/>
                         <viewControllerLayoutGuide type="bottom" id="Kcb-xd-pkR"/>
@@ -935,12 +935,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aPL-US-cEL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-783" y="633"/>
+            <point key="canvasLocation" x="-1097" y="200"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="MGY-zg-QOr">
             <objects>
-                <viewController id="nCh-cr-8PF" customClass="SignUpViewController" customModule="SnapchatProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nCh-cr-8PF" customClass="SignUpViewController" customModule="Funnel" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CX8-zc-FFL"/>
                         <viewControllerLayoutGuide type="bottom" id="K5v-vi-1KZ"/>
@@ -1061,15 +1061,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xeW-Oc-rHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-783" y="1463"/>
+            <point key="canvasLocation" x="-166" y="200"/>
         </scene>
     </scenes>
     <resources>
         <image name="Add" width="30" height="30"/>
-        <image name="Cook" width="95" height="95"/>
-        <image name="List" width="51" height="51"/>
+        <image name="Cook" width="31.666666030883789" height="31.666666030883789"/>
+        <image name="List" width="17" height="17"/>
         <image name="Scan" width="30" height="30"/>
-        <image name="Shop" width="69" height="69"/>
+        <image name="Shop" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ctP-1L-b15"/>

@@ -20,6 +20,7 @@
 		1052DD4721D647B500D0C8C0 /* ListPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1052DD4621D647B500D0C8C0 /* ListPageViewController.swift */; };
 		10644A9422570C6D00291D63 /* ReceiptScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10644A9322570C6D00291D63 /* ReceiptScannerViewController.swift */; };
 		10673E3121D7C56B0064FD13 /* PageViewControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10673E3021D7C56B0064FD13 /* PageViewControllers.swift */; };
+		109C0474226F01BB004E6E36 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 109C0473226F01BB004E6E36 /* GoogleService-Info.plist */; };
 		10C6B31F22574B8F00348E37 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10993FCF22572BCB00B6D079 /* CoreImage.framework */; };
 		10C6B3232257523600348E37 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 10C6B3222257523600348E37 /* tessdata */; };
 		10C6B3252257559100348E37 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10C6B3242257559100348E37 /* AppUtility.swift */; };
@@ -39,9 +40,6 @@
 		570D6FC8226EE7BD00412328 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D6FC4226EE7BC00412328 /* LogInViewController.swift */; };
 		570D6FC9226EE7BD00412328 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D6FC4226EE7BC00412328 /* LogInViewController.swift */; };
 		570D6FCA226EE7BD00412328 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570D6FC4226EE7BC00412328 /* LogInViewController.swift */; };
-		57C12734226535DD003E3117 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57C12733226535DD003E3117 /* GoogleService-Info.plist */; };
-		57C12735226535DD003E3117 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57C12733226535DD003E3117 /* GoogleService-Info.plist */; };
-		57C12736226535DD003E3117 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57C12733226535DD003E3117 /* GoogleService-Info.plist */; };
 		6FA8098FA9C43C8FC2CCE68A /* Pods_Funnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E5579E0786F9231531DA8A /* Pods_Funnel.framework */; };
 		874F39BBACD06CBB9E68D9F1 /* Pods_FunnelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEC2CC0C5BDBA42DFA93450 /* Pods_FunnelTests.framework */; };
 /* End PBXBuildFile section */
@@ -82,6 +80,7 @@
 		10993FC82257284C00B6D079 /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10993FCD22572BC400B6D079 /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10993FCF22572BCB00B6D079 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		109C0473226F01BB004E6E36 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		10C6B3222257523600348E37 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tessdata; sourceTree = "<group>"; };
 		10C6B3242257559100348E37 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		10CEEB70225738B100C1820B /* SwiftyTesseract.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyTesseract.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,7 +104,6 @@
 		52E5579E0786F9231531DA8A /* Pods_Funnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Funnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		570D6FC3226EE7BC00412328 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		570D6FC4226EE7BC00412328 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
-		57C12733226535DD003E3117 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6FEC2CC0C5BDBA42DFA93450 /* Pods_FunnelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunnelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A33B225F0698AFE51E3D7F5 /* Pods_FunnelUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunnelUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ABA616700CC35C6C530FB0A /* Pods-FunnelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunnelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FunnelTests/Pods-FunnelTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 		10F28FAB21D1E6C40018BB9E = {
 			isa = PBXGroup;
 			children = (
-				57C12733226535DD003E3117 /* GoogleService-Info.plist */,
 				10F28FB621D1E6C40018BB9E /* Funnel */,
 				10F28FCB21D1E6C50018BB9E /* FunnelTests */,
 				10F28FD621D1E6C50018BB9E /* FunnelUITests */,
@@ -214,6 +211,7 @@
 				10F28FBB21D1E6C40018BB9E /* Main.storyboard */,
 				10F28FC021D1E6C40018BB9E /* LaunchScreen.storyboard */,
 				10F28FC321D1E6C40018BB9E /* Info.plist */,
+				109C0473226F01BB004E6E36 /* GoogleService-Info.plist */,
 				10C6B3222257523600348E37 /* tessdata */,
 			);
 			path = Funnel;
@@ -390,7 +388,7 @@
 			files = (
 				10F28FC221D1E6C40018BB9E /* LaunchScreen.storyboard in Resources */,
 				10C6B3232257523600348E37 /* tessdata in Resources */,
-				57C12734226535DD003E3117 /* GoogleService-Info.plist in Resources */,
+				109C0474226F01BB004E6E36 /* GoogleService-Info.plist in Resources */,
 				10F28FBF21D1E6C40018BB9E /* Assets.xcassets in Resources */,
 				10F28FBD21D1E6C40018BB9E /* Main.storyboard in Resources */,
 			);
@@ -400,7 +398,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57C12735226535DD003E3117 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,7 +405,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57C12736226535DD003E3117 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
