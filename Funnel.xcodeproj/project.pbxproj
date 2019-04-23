@@ -33,6 +33,11 @@
 		10F54008225744AE00AD1F6D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 10F54007225744AE00AD1F6D /* libz.tbd */; };
 		10F5A46221D479F700D127C2 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F5A46121D479F700D127C2 /* GradientView.swift */; };
 		316D10D3EDBC8BB803026210 /* Pods_FunnelUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A33B225F0698AFE51E3D7F5 /* Pods_FunnelUITests.framework */; };
+		57C12734226535DD003E3117 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57C12733226535DD003E3117 /* GoogleService-Info.plist */; };
+		57C12735226535DD003E3117 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57C12733226535DD003E3117 /* GoogleService-Info.plist */; };
+		57C12736226535DD003E3117 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 57C12733226535DD003E3117 /* GoogleService-Info.plist */; };
+		57F6DC6A226E8124000894D2 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6DC68226E8123000894D2 /* LogInViewController.swift */; };
+		57F6DC6B226E8124000894D2 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57F6DC69226E8124000894D2 /* SignUpViewController.swift */; };
 		6FA8098FA9C43C8FC2CCE68A /* Pods_Funnel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52E5579E0786F9231531DA8A /* Pods_Funnel.framework */; };
 		874F39BBACD06CBB9E68D9F1 /* Pods_FunnelTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEC2CC0C5BDBA42DFA93450 /* Pods_FunnelTests.framework */; };
 /* End PBXBuildFile section */
@@ -94,6 +99,9 @@
 		412C8BDB02D230A24DB848EB /* Pods-FunnelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunnelTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FunnelTests/Pods-FunnelTests.release.xcconfig"; sourceTree = "<group>"; };
 		4CFB7D09355C3B4359CA44F2 /* Pods-Funnel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Funnel.release.xcconfig"; path = "Pods/Target Support Files/Pods-Funnel/Pods-Funnel.release.xcconfig"; sourceTree = "<group>"; };
 		52E5579E0786F9231531DA8A /* Pods_Funnel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Funnel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		57C12733226535DD003E3117 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
+		57F6DC68226E8123000894D2 /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogInViewController.swift; path = "../../../../../debbie/Academic/2018F/iOS/hw3-part2/SnapchatClone/LogInViewController.swift"; sourceTree = "<group>"; };
+		57F6DC69226E8124000894D2 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = "../../../../../debbie/Academic/2018F/iOS/hw3-part2/SnapchatClone/SignUpViewController.swift"; sourceTree = "<group>"; };
 		6FEC2CC0C5BDBA42DFA93450 /* Pods_FunnelTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunnelTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A33B225F0698AFE51E3D7F5 /* Pods_FunnelUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FunnelUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ABA616700CC35C6C530FB0A /* Pods-FunnelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FunnelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FunnelTests/Pods-FunnelTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +168,8 @@
 				1026F5EF21D7BB4F0067772E /* ListViewController.swift */,
 				1026D63B21DE1AE0008C5BAC /* CookViewController.swift */,
 				1026D63D21DE1AEF008C5BAC /* ShopViewController.swift */,
+				57F6DC68226E8123000894D2 /* LogInViewController.swift */,
+				57F6DC69226E8124000894D2 /* SignUpViewController.swift */,
 				10673E3421D7CBD50064FD13 /* PageViews */,
 			);
 			path = Views;
@@ -168,6 +178,7 @@
 		10F28FAB21D1E6C40018BB9E = {
 			isa = PBXGroup;
 			children = (
+				57C12733226535DD003E3117 /* GoogleService-Info.plist */,
 				10F28FB621D1E6C40018BB9E /* Funnel */,
 				10F28FCB21D1E6C50018BB9E /* FunnelTests */,
 				10F28FD621D1E6C50018BB9E /* FunnelUITests */,
@@ -375,6 +386,7 @@
 			files = (
 				10F28FC221D1E6C40018BB9E /* LaunchScreen.storyboard in Resources */,
 				10C6B3232257523600348E37 /* tessdata in Resources */,
+				57C12734226535DD003E3117 /* GoogleService-Info.plist in Resources */,
 				10F28FBF21D1E6C40018BB9E /* Assets.xcassets in Resources */,
 				10F28FBD21D1E6C40018BB9E /* Main.storyboard in Resources */,
 			);
@@ -384,6 +396,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57C12735226535DD003E3117 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +404,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57C12736226535DD003E3117 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,18 +485,26 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Funnel/Pods-Funnel-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Funnel/Pods-Funnel-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 			);
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Funnel/Pods-Funnel-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Funnel/Pods-Funnel-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -498,6 +520,7 @@
 				10644A9422570C6D00291D63 /* ReceiptScannerViewController.swift in Sources */,
 				1026D63E21DE1AEF008C5BAC /* ShopViewController.swift in Sources */,
 				1052DD4521D482E000D0C8C0 /* NutritionViewController.swift in Sources */,
+				57F6DC6B226E8124000894D2 /* SignUpViewController.swift in Sources */,
 				10F28FB821D1E6C40018BB9E /* AppDelegate.swift in Sources */,
 				1026F5F021D7BB4F0067772E /* ListViewController.swift in Sources */,
 				1052DD4321D482CF00D0C8C0 /* CompositionViewController.swift in Sources */,
@@ -505,6 +528,7 @@
 				10342FFC2257EDC200C20451 /* OCR.swift in Sources */,
 				10C6B3252257559100348E37 /* AppUtility.swift in Sources */,
 				10F5A46221D479F700D127C2 /* GradientView.swift in Sources */,
+				57F6DC6A226E8124000894D2 /* LogInViewController.swift in Sources */,
 				10342FF82257E79400C20451 /* ReceiptParser.swift in Sources */,
 				1052DD4721D647B500D0C8C0 /* ListPageViewController.swift in Sources */,
 				1026D63A21DE189B008C5BAC /* SearchButton.swift in Sources */,

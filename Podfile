@@ -8,7 +8,15 @@ target 'Funnel' do
   use_frameworks!
   pod 'TesseractOCRiOS', :git => 'https://github.com/parallaxe/Tesseract-OCR-iOS.git', :branch => "macos-support"
 
+
+
+
   # Pods for Funnel
+
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'FirebaseDatabase'
+  pod 'FirebaseStorage'
 
   target 'FunnelTests' do
     inherit! :search_paths
@@ -26,6 +34,7 @@ post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
       config.build_settings['ENABLE_BITCODE'] = 'NO'
+	config.build_settings['SWIFT_VERSION'] = '4.2'
     end
   end
 end
